@@ -23,16 +23,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Book>> {
 
-    private BookAdapter mAdapter;
-
     private static final String LOG_TAG = MainActivity.class.getName();
+    private static final int BOOK_LOADER_ID = 1;
+    TextView mEmptyStateTextView;
+    private BookAdapter mAdapter;
     private String GOOGLE_REQUEST_URL =
             "https://www.googleapis.com/books/v1/volumes?q=";
-
     private ListView bookListView;
-    TextView mEmptyStateTextView;
-
-    private static final int BOOK_LOADER_ID = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     if (networkInfo != null && networkInfo.isConnected()) {
 
                         LoaderManager loaderManager = getLoaderManager();
-                        loaderManager.initLoader(BOOK_LOADER_ID, null, this);  // error here on 3rd argument
+                        loaderManager.initLoader(BOOK_LOADER_ID, null, MainActivity.this);
 
                     } else {
                         Toast.makeText(MainActivity.this, "No internet available", Toast.LENGTH_SHORT).show();
