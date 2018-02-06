@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public class FetchData extends AsyncTask<String, Void, List<Student>> {
 
         String result = "";
-        String name, rollno, imageUrl;
+        String rank, population, country, flag;
 
         @Override
         protected List<Student> doInBackground(String... strings) {
@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
             HttpURLConnection httpURLConnection = null;
             InputStream inputStream = null;
             try {
-                //    URL url = new URL("https://api.myjson.com/bins/ermhl");
-                URL url = new URL("https://api.myjson.com/bins/puxhl");
+         
+                URL url = new URL("http://www.androidbegin.com/tutorial/jsonparsetutorial.txt");
                 httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.connect();
                 inputStream = httpURLConnection.getInputStream();
@@ -62,13 +62,15 @@ public class MainActivity extends AppCompatActivity {
                     line = bufferedReader.readLine();
                     result = result + line;
                 }
-                JSONArray jsonArray = new JSONArray(result);
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                    name = jsonObject.getString("name");
-                    rollno = jsonObject.getString("rollno");
-                    imageUrl = jsonObject.getString("image");
-                    students.add(new Student(name, rollno, imageUrl));
+                JSONObject object = new JSONObject(result);
+                JSONArray worldPopulation = object.getJSONArray("worldpopulation");
+                 for (int i = 0; i < worldPopulation.length(); i++) {
+                    JSONObject jsonObject = (JSONObject) worldPopulation.get(i);
+                    rank = jsonObject.getString("rank");
+                    population = jsonObject.getString("country");
+                    country = jsonObject.getString("population");
+                    flag = jsonObject.getString("flag");
+                    students.add(new Student(rank, country, population, flag));
                 }
 
             } catch (MalformedURLException e) {
