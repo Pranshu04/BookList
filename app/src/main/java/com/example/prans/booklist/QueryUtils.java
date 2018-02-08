@@ -132,7 +132,7 @@ public final class QueryUtils {
                 String author = "";
                 JSONObject imageLinks;
 
-                String imageUrl = "https://www.google.co.in/about/img/social/generic-feed.svg";
+                String imageUrl = " ";
                 if (volumeInfo.has("imageLinks")) {
                     imageLinks = volumeInfo.getJSONObject("imageLinks");
                     imageUrl = imageLinks.getString("smallThumbnail");
