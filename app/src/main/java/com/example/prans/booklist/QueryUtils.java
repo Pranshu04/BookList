@@ -130,13 +130,9 @@ public final class QueryUtils {
 
                 JSONArray authors;
                 String author = "";
-                JSONObject imageLinks;
+                JSONObject imageLinks = volumeInfo.getJSONObject("imageLinks");
+                String imageUrl = imageLinks.getString("smallThumbnail");
 
-                String imageUrl = "https://www.google.co.in/about/img/social/generic-feed.svg";
-                if (volumeInfo.has("imageLinks")) {
-                    imageLinks = volumeInfo.getJSONObject("imageLinks");
-                    imageUrl = imageLinks.getString("smallThumbnail");
-                }
                 if (volumeInfo.has("authors")) {
                     authors = volumeInfo.getJSONArray("authors");
                     author = authors.getString(0);
