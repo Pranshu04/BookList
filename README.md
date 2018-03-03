@@ -2,7 +2,7 @@
 BookList Android project from my [Androids Basics Udacity Course](https://in.udacity.com/course/android-basics-networking--ud843).
 
 # Description
-- Allows user to get a list of the first published books on a given topic.
+- Allows user to get a list of the published books on a given topic.
 - Connects to the Google Books API in order to fetch results and display them.
 - Using an AsyncTask.
 - Parsing a JSON response.
